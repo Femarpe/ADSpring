@@ -1,4 +1,4 @@
-package ad2022.ADSpring.Domain;
+package ad2022.ADSpring.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,14 +8,13 @@ public class Ability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     private String name;
     private String effect;
 
     @ManyToMany
-    @JoinTable(name = "Pokemon_ability", joinColumns = @JoinColumn(name = "id_ability"), inverseJoinColumns = @JoinColumn(name = "id_pokemon"))
-
+    @JoinTable(name = "pokemon_ability", joinColumns = @JoinColumn(name = "id_ability"), inverseJoinColumns = @JoinColumn(name = "id_pokemon"))
     private Set<Pokemon>pokemons = new HashSet<>();
 
     public Ability(Long id, String name, String effect, Set<Pokemon> pokemons) {
@@ -25,11 +24,16 @@ public class Ability {
         this.pokemons = pokemons;
     }
 
-    public Long getId() {
+    public Ability( String name, String effect) {
+        this.name = name;
+        this.effect = effect;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -55,5 +59,9 @@ public class Ability {
 
     public void setPokemons(Set<Pokemon> pokemons) {
         this.pokemons = pokemons;
+    }
+    @Override
+    public String toString() {
+        return "Tramite [idAbility= " + id + ", nombreAbility= " + name + ", efecto =" + effect + "]";
     }
 }

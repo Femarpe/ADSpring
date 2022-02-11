@@ -1,6 +1,4 @@
-package ad2022.ADSpring.Domain;
-
-import ad2022.ADSpring.Domain.Ability;
+package ad2022.ADSpring.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,11 +16,21 @@ public class Pokemon {
     @ManyToMany(mappedBy = "pokemons")
     private Set<Ability> abilities = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "idType")
+    private Type type;
+
     public Pokemon(long id, String name, double power, Set<Ability> abilities) {
         this.id = id;
         this.name = name;
         this.power = power;
         this.abilities = abilities;
+    }
+
+
+    public Pokemon(String name, double power) {
+        this.name = name;
+        this.power = power  ;
     }
 
     public long getId() {
@@ -55,5 +63,10 @@ public class Pokemon {
 
     public void setAbilities(Set<Ability> abilities) {
         this.abilities = abilities;
+    }
+
+    @Override
+    public String toString() {
+        return "Pokemon [idPokemon= " + id + ", nombrePokemon= " + name + ", poder=" + power + "]";
     }
 }
