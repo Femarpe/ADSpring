@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso a Datos</title>
+</head>
+<body>
+<h1>Pokemon List</h1>
+<table>
+    <tr>
+        <th>ld</th>
+        <th>Name</th>
+        <th>Power</th>
+        <th>Type</th>
+    </tr>
+    <tr th:each="pokemon : ${pokemons}">
+        <td th:text="${pokemon.id}"></td>
+        <td th:text="${pokemon.name"> Meowth</td>
+        <td th:text="${pokemon.power}">225</td>
+        <td th:text="${pokemon.type.name">225</td>
+    </tr>
+</table>
+</body>
+</html>
+

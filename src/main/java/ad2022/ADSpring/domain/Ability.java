@@ -1,9 +1,12 @@
 package ad2022.ADSpring.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 public class Ability {
 
     @Id
@@ -15,7 +18,11 @@ public class Ability {
 
     @ManyToMany
     @JoinTable(name = "pokemon_ability", joinColumns = @JoinColumn(name = "id_ability"), inverseJoinColumns = @JoinColumn(name = "id_pokemon"))
-    private Set<Pokemon>pokemons = new HashSet<>();
+    @JsonIgnore
+    private Set<Pokemon> pokemons = new HashSet<>();
+
+    public Ability() {
+    }
 
     public Ability(Long id, String name, String effect, Set<Pokemon> pokemons) {
         this.id = id;
@@ -24,7 +31,7 @@ public class Ability {
         this.pokemons = pokemons;
     }
 
-    public Ability( String name, String effect) {
+    public Ability(String name, String effect) {
         this.name = name;
         this.effect = effect;
     }
@@ -60,6 +67,7 @@ public class Ability {
     public void setPokemons(Set<Pokemon> pokemons) {
         this.pokemons = pokemons;
     }
+
     @Override
     public String toString() {
         return "Tramite [idAbility= " + id + ", nombreAbility= " + name + ", efecto =" + effect + "]";

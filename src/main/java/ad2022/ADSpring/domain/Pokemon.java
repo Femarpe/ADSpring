@@ -20,6 +20,9 @@ public class Pokemon {
     @JoinColumn(name = "idType")
     private Type type;
 
+    public Pokemon() {
+    }
+
     public Pokemon(long id, String name, double power, Set<Ability> abilities) {
         this.id = id;
         this.name = name;
@@ -30,7 +33,7 @@ public class Pokemon {
 
     public Pokemon(String name, double power) {
         this.name = name;
-        this.power = power  ;
+        this.power = power;
     }
 
     public long getId() {
